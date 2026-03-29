@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    @apply m-0 bg-[#05070b] text-slate-100 antialiased;
+    font-feature-settings: "ss01" on, "ss03" on, "cv11" on;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.22);
+    color: #f8fafc;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(71, 85, 105, 0.9) rgba(2, 6, 23, 0.5);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(2, 6, 23, 0.45);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(2, 6, 23, 0.3);
+  border-radius: 999px;
+  background: rgba(71, 85, 105, 0.9);
+}
+
+.mermaid-frame {
+  border: 1px solid rgb(30 41 59 / 1);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(10, 16, 26, 0.98), rgba(8, 13, 22, 0.98));
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.15), 0 16px 40px rgba(2, 6, 23, 0.28);
+  overflow: hidden;
+}
+
+.mermaid-frame--expanded .mermaid-surface {
+  min-height: 720px;
+}
+
+.mermaid-frame__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgb(30 41 59 / 1);
+  background: linear-gradient(180deg, rgba(9, 14, 22, 1), rgba(11, 18, 29, 1));
+}
+
+.mermaid-frame__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mermaid-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  background: rgba(34, 211, 238, 0.08);
+  color: rgb(103 232 249 / 1);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+  letter-spacing: 0.03em;
+}
+
+.mermaid-frame__note {
+  color: rgb(100 116 139 / 1);
+  font-size: 11px;
+  font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+}
+
+.mermaid-surface {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  padding: 10px;
+  cursor: grab;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.24), rgba(2, 6, 23, 0.44)),
+    linear-gradient(90deg, rgba(51, 65, 85, 0.14) 1px, transparent 1px),
+    linear-gradient(rgba(51, 65, 85, 0.14) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(15, 23, 42, 0.86), rgba(5, 7, 11, 0.99) 60%);
+  background-size: auto, 32px 32px, 32px 32px, auto;
+}
+
+.mermaid-surface:active {
+  cursor: grabbing;
+}
+
+.mermaid-surface--rendering {
+  opacity: 0.92;
+}
+
+.mermaid-surface__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.mermaid-surface__svg {
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(2, 6, 23, 0.34));
+}
+
+.mermaid-surface .node {
+  transition: filter 160ms ease, opacity 160ms ease;
+}
+
+.mermaid-surface .node rect,
+.mermaid-surface .node polygon,
+.mermaid-surface .node path,
+.mermaid-surface .node circle {
+  filter: saturate(1.05);
+}
+
+.mermaid-surface .node:hover {
+  filter: drop-shadow(0 8px 16px rgba(56, 189, 248, 0.22)) brightness(1.06);
+  cursor: pointer;
+}
+
+/* Decision/loop diamond nodes — amber accent to match Mermaid tertiaryBorderColor */
+.mermaid-surface .loop_diamond rect,
+.mermaid-surface .loop_diamond polygon,
+.mermaid-surface .loop_diamond path {
+  stroke: rgb(245 158 11) !important;
+  stroke-width: 1.8px !important;
+}
+
+.mermaid-surface .loop_diamond:hover {
+  filter: drop-shadow(0 8px 16px rgba(245, 158, 11, 0.28)) brightness(1.06);
+}
+
+.mermaid-surface .label,
+.mermaid-surface .label text,
+.mermaid-surface .nodeLabel,
+.mermaid-surface span {
+  color: rgb(226 232 240) !important;
+  fill: rgb(226 232 240) !important;
+  font-size: 13px !important;
+  font-weight: 550;
+}
+
+.mermaid-surface .label foreignObject,
+.mermaid-surface .label div,
+.mermaid-surface .nodeLabel p,
+.mermaid-surface .nodeLabel span {
+  overflow: visible !important;
+  line-height: 1.35 !important;
+  white-space: nowrap !important;
+}
+
+.mermaid-surface .cluster-label text,
+.mermaid-surface .cluster-label span {
+  color: rgb(203 213 225) !important;
+  fill: rgb(203 213 225) !important;
+}
+
+.mermaid-surface .edgeLabel {
+  filter: drop-shadow(0 4px 10px rgba(2, 6, 23, 0.34));
+}
+
+.mermaid-surface .edgeLabel rect {
+  rx: 8px;
+  ry: 8px;
+  fill: rgba(15, 23, 42, 0.98) !important;
+  stroke: rgba(56, 189, 248, 0.28) !important;
+}
+
+.mermaid-surface .edgeLabel text,
+.mermaid-surface .edgeLabel span {
+  color: rgb(248 250 252) !important;
+  fill: rgb(248 250 252) !important;
+  font-size: 12px !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.mermaid-surface .flowchart-link {
+  stroke: rgba(125, 211, 252, 0.88) !important;
+  stroke-width: 2.2px !important;
+  stroke-linecap: round;
+}
+
+.mermaid-surface marker path {
+  fill: rgba(125, 211, 252, 0.88) !important;
+  stroke: rgba(125, 211, 252, 0.88) !important;
+}
+
+.mermaid-surface .mermaid-node--active {
+  filter: drop-shadow(0 12px 22px rgba(56, 189, 248, 0.32)) brightness(1.08);
+}
+
+.mermaid-surface .mermaid-node--active rect,
+.mermaid-surface .mermaid-node--active polygon,
+.mermaid-surface .mermaid-node--active path {
+  stroke: rgb(34 211 238) !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid-raw {
+  margin-top: 16px;
+  padding: 18px;
+  background: rgb(10 15 23 / 1);
+  border: 1px solid rgb(30 41 59 / 1);
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(203 213 225 / 1);
+  font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+}
+
+.monaco-line-highlight {
+  background: rgba(34, 211, 238, 0.1);
+  border-left: 3px solid rgba(34, 211, 238, 0.9);
+}
+
+.monaco-line-highlight-glyph {
+  background: rgba(34, 211, 238, 0.95);
+  width: 6px !important;
+  margin-left: 4px;
+  border-radius: 999px;
+}
