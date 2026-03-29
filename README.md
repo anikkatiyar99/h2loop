@@ -13,7 +13,7 @@ Inside the diagram, every node is clickable. Clicking a node looks up its source
 **Full stack**
 ```bash
 cp .env.example .env
-docker compose up --build   # → http://localhost:3000 or http://localhost:8000/docs
+docker compose up --build   # → http://localhost:3000 or http://localhost:3000/docs
 docker compose down
 ```
 
