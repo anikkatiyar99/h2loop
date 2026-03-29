@@ -19,7 +19,7 @@ uvicorn app.main:app --reload --port 8000
 python3 -m pytest tests -q
 ```
 
-Swagger UI: http://localhost:8000/docs — ReDoc: http://localhost:8000/redoc
+Swagger UI: http://localhost:8000/docs
 
 **Frontend**
 ```bash
@@ -33,7 +33,7 @@ npm run build  # output: dist/
 **Full stack**
 ```bash
 cp .env.example .env
-docker compose up --build   # → http://localhost:3000
+docker compose up --build   # → http://localhost:3000 or http://localhost:8000/docs
 ```
 
 The frontend container is nginx serving the Vite build, reverse-proxying `/api` and `/ws` to the `backend` service. The backend is not published on the host directly.

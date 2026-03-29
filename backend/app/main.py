@@ -56,6 +56,7 @@ def create_app() -> FastAPI:
         yield
 
     app = FastAPI(
+        redoc_url=None,
         title="c-analyser",
         summary="C control-flow visualizer — AST traversal to Mermaid diagrams",
         description="""
