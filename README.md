@@ -10,6 +10,15 @@ Inside the diagram, every node is clickable. Clicking a node looks up its source
 
 ## Local development
 
+**Full stack**
+```bash
+cp .env.example .env
+docker compose up --build   # → http://localhost:3000 or http://localhost:8000/docs
+docker compose down
+```
+
+The frontend container is nginx serving the Vite build, reverse-proxying `/api` and `/ws` to the `backend` service. The backend is not published on the host directly.
+
 **Backend**
 ```bash
 cd backend
@@ -29,14 +38,6 @@ npm run dev    # Vite dev server at :5173, proxies /api and /ws to :8000
 npm run test   # vitest
 npm run build  # output: dist/
 ```
-
-**Full stack**
-```bash
-cp .env.example .env
-docker compose up --build   # → http://localhost:3000 or http://localhost:8000/docs
-```
-
-The frontend container is nginx serving the Vite build, reverse-proxying `/api` and `/ws` to the `backend` service. The backend is not published on the host directly.
 
 ## Architecture
 
